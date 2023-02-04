@@ -8,11 +8,11 @@ If you do find any bugs (and it's not listed in the limitations category), pleas
 
 ### Links
 
-[Installation Guide](https://github.com/karsteny/FTC-matches/blob/release-staging/README.md#how-2-install)
+[Installation Guide](#how-2-install)
 
-[Limitations/Known Issues](https://github.com/karsteny/FTC-matches/blob/release-staging/README.md#how-2-install)
+[Limitations/Known Issues](#limitations--known-issues)
 
-[FAQ](https://github.com/karsteny/FTC-matches/blob/release-staging/README.md#how-2-install)
+[FAQ](#faq)
 
 ## FAQ
 
