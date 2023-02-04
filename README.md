@@ -1,6 +1,10 @@
 # FTC-matches
 
-### How 2 Install
+Welcome to FTC Matches, a little project designed to see how your team is doing and when your next match is at a glance.
+
+
+
+## How 2 Install
 
 ##### Step 1: 
 Download/clone all of the files from this repository into a single folder. 
