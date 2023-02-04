@@ -1,14 +1,11 @@
-import {createDivWithClassAndText, gimmeADivider} from '/helpfulHTML.js';
-// interface genericMatch {
-//   title;
-//   redScore;
-//   blueScore;
-// }
+//168 lines of poorly indexing HTML elements
+
+import {createDivWithClassAndText, gimmeADivider} from './helpfulHTML.js';
 
 export class twoTeamMatch {
-  matchNumber;
   description;
   status;
+  field;
   redTeamA;
   redTeamB;
   redScore;
@@ -18,10 +15,11 @@ export class twoTeamMatch {
   elementA;
   elementB;
   teamNumber;
-  constructor(matchNo, description, status, redTeamA, redTeamB, redScore, blueTeamA, blueTeamB, blueScore, teamNumber){
-    this.matchNumber = matchNo;
+  hasElements;
+  constructor(description, status, field, redTeamA, redTeamB, redScore, blueTeamA, blueTeamB, blueScore, teamNumber){
     this.description = description;
     this.status = status;
+    this.field = field;
     this.redTeamA = redTeamA;
     this.redTeamB = redTeamB;
     this.redScore = redScore;
@@ -29,53 +27,63 @@ export class twoTeamMatch {
     this.blueTeamB = blueTeamB;
     this.blueScore = blueScore;
     this.teamNumber = teamNumber;
-    console.log(typeof this.teamNumber);
-    console.log(typeof this.redTeamA);
-    console.log(this.teamNumber);
-    console.log(this.redTeamA);
-    this.elementA = this.createHTMLElement();
-    this.elementB = this.createHTMLElement();
+    this.hasElements = false;
+    // this.elementA = this.createHTMLElement();
+    // this.elementB = this.createHTMLElement();
+  }
+  createElements(){
+    if(!this.hasElements){
+      this.elementA = this.createHTMLElement();
+      this.elementB = this.createHTMLElement();
+      this.hasElements = true;
+    }
   }
   setScore(redScore, blueScore){
-    console.log("setting score");
     if(this.redScore == null){
-      console.log("new score");
       this.redScore = redScore;
       this.blueScore = blueScore;
-      this.elementA.children[1].children[8].textContent=this.redScore;
-      this.elementA.children[1].children[10].textContent=this.blueScore;
-      this.elementB.children[1].children[8].textContent=this.redScore;
-      this.elementB.children[1].children[10].textContent=this.blueScore;
-      if(this.redScore > this.blueScore){
-        this.elementA.children[1].children[8].className = "light-ftc-red score bold";
-        this.elementB.children[1].children[8].className = "light-ftc-red score bold";
-        this.elementA.children[1].children[10].className = "light-ftc-blue score";
-        this.elementB.children[1].children[10].className = "light-ftc-blue score";
-      }else if(this.blueScore > this.redScore){
-        this.elementA.children[1].children[10].className = "light-ftc-blue score bold";
-        this.elementB.children[1].children[10].className = "light-ftc-blue score bold";
-        this.elementA.children[1].children[8].className = "light-ftc-red score";
-        this.elementB.children[1].children[8].className = "light-ftc-red score";
+      if(this.hasElements){
+        this.elementA.children[1].children[8].textContent=this.redScore;
+        this.elementA.children[1].children[10].textContent=this.blueScore;
+        this.elementB.children[1].children[8].textContent=this.redScore;
+        this.elementB.children[1].children[10].textContent=this.blueScore;
+        if(this.redScore > this.blueScore){
+          this.elementA.children[1].children[8].className = "light-ftc-red score bold";
+          this.elementB.children[1].children[8].className = "light-ftc-red score bold";
+          this.elementA.children[1].children[10].className = "light-ftc-blue score";
+          this.elementB.children[1].children[10].className = "light-ftc-blue score";
+        }else if(this.blueScore > this.redScore){
+          this.elementA.children[1].children[10].className = "light-ftc-blue score bold";
+          this.elementB.children[1].children[10].className = "light-ftc-blue score bold";
+          this.elementA.children[1].children[8].className = "light-ftc-red score";
+          this.elementB.children[1].children[8].className = "light-ftc-red score";
+        }
       }
     }
-
   }
   //takes in the key-pair list for rankings and applies it
   updateRankings(rankList){
-    this.elementA.children[1].children[0].textContent=rankList[this.elementA.children[1].children[2].textContent];
-    this.elementA.children[1].children[4].textContent=rankList[this.elementA.children[1].children[6].textContent];
-    this.elementA.children[1].children[12].textContent=rankList[this.elementA.children[1].children[14].textContent];
-    this.elementA.children[1].children[16].textContent=rankList[this.elementA.children[1].children[18].textContent];
-    this.elementB.children[1].children[0].textContent=rankList[this.elementA.children[1].children[2].textContent];
-    this.elementB.children[1].children[4].textContent=rankList[this.elementA.children[1].children[6].textContent];
-    this.elementB.children[1].children[12].textContent=rankList[this.elementA.children[1].children[14].textContent];
-    this.elementB.children[1].children[16].textContent=rankList[this.elementA.children[1].children[18].textContent];
+    if(this.hasElements){
+      this.elementA.children[1].children[0].textContent=rankList[this.elementA.children[1].children[2].textContent];
+      this.elementA.children[1].children[4].textContent=rankList[this.elementA.children[1].children[6].textContent];
+      this.elementA.children[1].children[12].textContent=rankList[this.elementA.children[1].children[14].textContent];
+      this.elementA.children[1].children[16].textContent=rankList[this.elementA.children[1].children[18].textContent];
+      this.elementB.children[1].children[0].textContent=rankList[this.elementA.children[1].children[2].textContent];
+      this.elementB.children[1].children[4].textContent=rankList[this.elementA.children[1].children[6].textContent];
+      this.elementB.children[1].children[12].textContent=rankList[this.elementA.children[1].children[14].textContent];
+      this.elementB.children[1].children[16].textContent=rankList[this.elementA.children[1].children[18].textContent];
+    }
   }
   //sets that upper right hand box
   setStatus(status){
     this.status = status;
-    this.elementA.children[0].children[2].textContent=this.status;
-    this.elementB.children[0].children[2].textContent=this.status;
+    if(this.hasElements){
+      this.elementA.children[0].children[2].textContent=this.status;
+      this.elementB.children[0].children[2].textContent=this.status;
+    }
+  }
+  setTeam(team){
+    this.teamNumber = team;
   }
 
   getElementA(){
@@ -160,4 +168,3 @@ export class twoTeamMatch {
     return outerDiv;
   } 
 }
-
