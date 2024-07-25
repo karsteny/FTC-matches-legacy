@@ -1,4 +1,6 @@
 # FTC-matches
+This is old deprecated code. Also it features some of the worst coding in the history of JS/HTML (imagine trying to beat JS into being object oriented!)
+It will probably still work so long as you set the year to the correct time but otherwise it needs a deep rewrite.
 
 ### How 2 Install
 
