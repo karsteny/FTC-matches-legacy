@@ -20,8 +20,8 @@ async function openSite(){
     codeErr.textContent = "Event code is blank."
   }
   if(!bad){
-    var event = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2022/events?eventCode="+code.value.trim() })
-    var tm = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2022/teams?teamNumber="+team.value.trim() })
+    var event = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/events?eventCode="+code.value.trim() })
+    var tm = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/teams?teamNumber="+team.value.trim() })
     if(tm.error != undefined){
       bad = true;
       if(tm.error == "400") {
@@ -46,4 +46,5 @@ async function openSite(){
       wind.evName = event.events[0].name;
     }
   }
+  // const wind = window.open("/index.html", "", "popup");
 }
