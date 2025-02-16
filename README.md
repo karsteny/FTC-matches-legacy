@@ -1,6 +1,6 @@
 # FTC-matches
 ### DEPRECATED!
-This repository is deprecated, please go to [the new repository](https://github.com/Team-7159-RoboRavens).
+This repository is deprecated, please go to [the new repository](https://github.com/Team-7159-RoboRavens/FTC-matches).
 
 ![banner ftc matches](https://github.com/user-attachments/assets/c1196ceb-e2d0-406f-849f-4398826e18a3)
 ![image](https://github.com/user-attachments/assets/2a2b2270-3850-4023-945e-e65741aafc4f)
