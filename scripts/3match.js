@@ -64,6 +64,11 @@ export class threeTeamMatch {
             this.elementB.children[0].children[2].className = "light-ftc-red score";
             this.elementA.children[0].children[4].className = "light-ftc-blue score bold";
             this.elementB.children[0].children[4].className = "light-ftc-blue score bold";
+          }else{
+            this.elementA.children[0].children[2].className = "light-ftc-red score";
+            this.elementB.children[0].children[2].className = "light-ftc-red score";
+            this.elementA.children[0].children[4].className = "light-ftc-blue score";
+            this.elementB.children[0].children[4].className = "light-ftc-blue score";
           }
         }
       }

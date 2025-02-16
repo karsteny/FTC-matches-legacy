@@ -88,11 +88,11 @@ function ranksToKeyPairs() {
 //returns false if at least one of the API calls failed.
 //lots of the commented out stuff is to replace the live data with fake data for testing
 async function getData() {
-  teamSchedule = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/schedule/" + window.evCode + "?teamNumber=" + team });
-  const scheduleQual = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/schedule/" + window.evCode + "?tournamentLevel=qual" });
-  const schedulePlayoff = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/schedule/" + window.evCode + "?tournamentLevel=playoff" });
-  allResults = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/matches/" + window.evCode });
-  rankResponse = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2023/rankings/" + window.evCode });
+  teamSchedule = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2024/schedule/" + window.evCode + "?teamNumber=" + team });
+  const scheduleQual = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2024/schedule/" + window.evCode + "?tournamentLevel=qual" });
+  const schedulePlayoff = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2024/schedule/" + window.evCode + "?tournamentLevel=playoff" });
+  allResults = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2024/matches/" + window.evCode });
+  rankResponse = await chrome.runtime.sendMessage({ url: "https://ftc-api.firstinspires.org/v2.0/2024/rankings/" + window.evCode });
   // teamSchedule = await fetch("/testTeamSchedule.json").then(response => response.json());
   // allSchedule = await fetch("/testAllSchedule.json").then(response => response.json());
   // allSchedule = allSchedule.schedule;
@@ -101,7 +101,7 @@ async function getData() {
   if (teamSchedule.error != undefined || scheduleQual.error != undefined || schedulePlayoff.error != undefined || allResults.error != undefined || rankResponse.error != undefined) {
     document.getElementById("error-message").style.display = "block";
     return false;
-  }else{
+  } else {
     document.getElementById("error-message").style.display = "none";
   }
   allSchedule = scheduleQual.schedule.concat(schedulePlayoff.schedule);
@@ -158,13 +158,13 @@ async function statusUpdate() {
       const content = document.createElement("div");
       content.className = "counter-content";
       content.style = "bottom: -110%;";
-      if(next[2] != -1){
+      if (next[2] != -1) {
         //if there is a next match, say so!
         content.appendChild(createDivWithClassAndText("right-border", getShortenedMatchName(next[1]) + ": In progress"));
-        content.appendChild(createDivWithClassAndText("", "Next: "+getShortenedMatchName(next[3])+": Queue in"));
-        content.appendChild(createDivWithClassAndText("counter led", next[2]-1));
+        content.appendChild(createDivWithClassAndText("", "Next: " + getShortenedMatchName(next[3]) + ": Queue in"));
+        content.appendChild(createDivWithClassAndText("counter led", next[2] - 1));
         content.appendChild(createDivWithClassAndText("", "rounds."));
-      }else{
+      } else {
         content.appendChild(createDivWithClassAndText("", getShortenedMatchName(next[1]) + ": In progress"));
       }
       //animation
@@ -182,12 +182,12 @@ async function statusUpdate() {
       const content = document.createElement("div");
       content.className = "counter-content";
       content.style = "bottom: -110%;";
-      if(tracker.fields.length > 1){
-        content.appendChild(createDivWithClassAndText("", getShortenedMatchName(next[1]) + ": Queue NOW - Field "+next[1].field+" -"));
-      }else{
+      if (tracker.fields.length > 1) {
+        content.appendChild(createDivWithClassAndText("", getShortenedMatchName(next[1]) + ": Queue NOW - Field " + next[1].field + " -"));
+      } else {
         content.appendChild(createDivWithClassAndText("", getShortenedMatchName(next[1]) + ": Queue NOW -"));
       }
-     
+
       if (next[1].getTeamAlliance() == "red") {
         content.appendChild(createDivWithClassAndText("light-ftc-red alliance", "RED"));
       }
@@ -210,13 +210,13 @@ async function statusUpdate() {
       content.className = "counter-content";
       content.style = "bottom: -110%;";
       content.appendChild(createDivWithClassAndText("", getShortenedMatchName(next[1]) + ": Queue in"));
-      content.appendChild(createDivWithClassAndText("counter led", next[0]-1));
+      content.appendChild(createDivWithClassAndText("counter led", next[0] - 1));
       //change text for multiple fields
-      if(tracker.fields.length > 1){
-        content.appendChild(createDivWithClassAndText("", "rounds - Field "+next[1].field+" -"));
-      }else{
+      if (tracker.fields.length > 1) {
+        content.appendChild(createDivWithClassAndText("", "rounds - Field " + next[1].field + " -"));
+      } else {
         content.appendChild(createDivWithClassAndText("", "rounds -"));
-      }      
+      }
       if (next[1].getTeamAlliance() == "red") content.appendChild(createDivWithClassAndText("light-ftc-red alliance", "RED"));
       else if (next[1].getTeamAlliance() == "blue") content.appendChild(createDivWithClassAndText("light-ftc-blue alliance", "BLUE"));
       //animation
@@ -227,11 +227,11 @@ async function statusUpdate() {
         counterContainer.style.borderBottomColor = "#26c22d";
       });
       // updateTrackerFields(next[1].description, "Rounds until On Deck:", next[0] - 1, next[1].getTeamAlliance(), "#26c22d");
-    }else{
+    } else {
       //if it is the same, update value 
-      counterContainer.children[0].children[1].textContent = next[0]-1;
+      counterContainer.children[0].children[1].textContent = next[0] - 1;
     }
-  } else if (next[0] == -2){
+  } else if (next[0] == -2) {
     //no matches in the first place
     if (lastVal != -2) {
       //prevent reanimating
@@ -250,18 +250,18 @@ async function statusUpdate() {
 }
 
 //saves a few lines of code because otherwise *infuriating*
-function getShortenedMatchName(match){
-  if(match.tournamentLevel == "SEMIFINAL"){
-    return "S"+match.series+"M"+match.matchNumber;
-  }else if(match.tournamentLevel == "FINAL"){
-    return "F"+match.matchNumber;
-  }else{
-    return "Q"+match.matchNumber;
+function getShortenedMatchName(match) {
+  if (match.tournamentLevel == "SEMIFINAL") {
+    return "S" + match.series + "M" + match.matchNumber;
+  } else if (match.tournamentLevel == "FINAL") {
+    return "F" + match.matchNumber;
+  } else {
+    return "Q" + match.matchNumber;
   }
 }
 
 //wait a bit before initing
-setTimeout(initialize, 500);
+setTimeout(initialize, 5);
 
 //automatically redoes scroll hasn't resized for 1000ms after being resized (thanks stackoverflow question #2996431)
 window.addEventListener('resize', function () {
