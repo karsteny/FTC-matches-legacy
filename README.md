@@ -1,6 +1,9 @@
 # FTC-matches
-This is old deprecated code. Also it features some of the worst coding in the history of JS/HTML (imagine trying to beat JS into being object oriented!)
-It will probably still work so long as you set the year to the correct time but otherwise it needs a deep rewrite.
+### DEPRECATED!
+This repository is deprecated, please go to [the new repository](https://github.com/Team-7159-RoboRavens).
+
+![banner ftc matches](https://github.com/user-attachments/assets/c1196ceb-e2d0-406f-849f-4398826e18a3)
+![image](https://github.com/user-attachments/assets/2a2b2270-3850-4023-945e-e65741aafc4f)
 
 ### How 2 Install
 
